@@ -1,0 +1,80 @@
+<div class="w-3/4 mx-auto flex">
+  <div class="w-3/4 h-96">
+    <owl-carousel-o [options]="customOptions">
+      @for (item of sliderImages; track $index) {
+      <ng-template carouselSlide>
+        <img class="w-full h-96" [src]="item" />
+      </ng-template>
+      }
+    </owl-carousel-o>
+  </div>
+  <div class="w-1/4 h-96">
+    <img class="h-48" src="assets/images/slider-image-1.jpeg" />
+    <img class="h-48" src="assets/images/slider-image-2.jpeg" />
+  </div>
+</div>
+
+<input
+  [(ngModel)]="find"
+  class="w-50 mx-auto form-control my-5"
+  placeholder="Search Product HERE"
+/>
+<!-- component -->
+
+<div class="my-5">
+  <div class="flex flex-col lg:flex-row flex-wrap gap-y-3">
+    @for (item of allProducts | search :find ; track $index) {
+
+    <div
+      class="relative product cursor-pointer flex w-1/5 flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md"
+    >
+      <!-- img , titl -->
+      <div [routerLink]="['/productDetails', item._id]">
+        <div
+          class="relative mx-4 mt-4 h-96 overflow-hidden rounded-xl bg-white bg-clip-border text-gray-700"
+        >
+          <img [src]="item.imageCover" class="h-full w-full object-cover" />
+        </div>
+        <div class="">
+          <div class="mb-2 flex items-center justify-between">
+            <p
+              class="text-main block font-sans text-base font-medium leading-relaxed text-blue-gray-900 antialiased"
+            >
+              {{ item.category.name }}
+            </p>
+          </div>
+          <p
+            class="block font-sans text-sm font-normal leading-normal text-gray-700 antialiased opacity-75"
+          >
+            {{ item.title }}
+          </p>
+        </div>
+        <div class="mb-2 p-6 flex items-center justify-between">
+          <p
+            class="text-main block font-sans text-base font-medium leading-relaxed text-blue-gray-900 antialiased"
+          >
+            {{ item.price }}EGP
+          </p>
+          <p
+            class="block font-sans text-base font-medium leading-relaxed text-blue-gray-900 antialiased"
+          >
+            <i class="fa-solid fa-star rating-color"></i>
+            {{ item.ratingsAverage }}
+          </p>
+        </div>
+      </div>
+      <!-- button -->
+      <div class="p-6 product">
+        <button
+          (click)="addToCart(item._id)"
+          class="block bg-main text-white w-full select-none rounded-lg bg-blue-gray-900/10 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-blue-gray-900 transition-all hover:scale-105 focus:scale-105 focus:opacity-[0.85] active:scale-100 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+          type="button"
+        >
+          {{ "addToCart" | translate }}
+        </button>
+      </div>
+    </div>
+
+    }
+  </div>
+</div>

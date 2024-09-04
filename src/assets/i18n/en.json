@@ -1,0 +1,17 @@
+{
+
+  "Home" :"Home" ,
+  "Cart" :"Cart" ,
+  "Category" :"Category" ,
+  "Brands" :"Brands" ,
+  "Products" :"Products" ,
+  "logIn" : "logIn" ,
+  "Register" : "Register",
+  "Logout" : "Logout",
+  "addToCart" : "Add To Cart",
+  "CheckOut": "CheckOut",
+  "Forget Password" :"Forget Password"
+
+  
+  
+}
